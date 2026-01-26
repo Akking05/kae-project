@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@theme {
+  /* Создаем свои цвета здесь */
+  --color-kae-dark: #050B08;
+  --color-kae-green: #00E676;
+  --color-kae-gray: #121F19;
+}
+
+/* Применяем фон к телу сайта */
+body {
+  background-color: var(--color-kae-dark);
+  color: white;
+  margin: 0;
+  font-family: sans-serif;
+}

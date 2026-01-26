@@ -1,0 +1,27 @@
+{
+  "translation": {
+    "nav": {
+      "home": "Home",
+      "products": "Products",
+      "about": "About",
+      "contact": "Contact"
+    },
+    "hero": {
+      "title": "Future Technologies",
+      "subtitle": "Kazakhstan Aselsan Engineering — today"
+    },
+    "products": {
+      "thermal": "Thermal Imaging Systems",
+      "radio": "Radio Communication",
+      "night": "Night Vision Devices"
+    },
+    "contact": {
+      "title": "Contact Us",
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "send": "Send",
+      "success": "Message sent successfully!"
+    }
+  }
+}
