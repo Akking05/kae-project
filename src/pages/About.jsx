@@ -3,44 +3,106 @@ import { useTranslation } from 'react-i18next';
 const About = () => {
   const { t } = useTranslation();
 
-  // Данные для таймлайна (истории)
-  const history = [
-    { year: '2011', text: 'Заводтың негізі қаланды (Основание завода)' },
-    { year: '2013', text: 'Алғашқы өнім шығарылды (Выпуск первой продукции)' },
-    { year: '2026', text: 'Цифрлық трансформация және жаңа белестер (Цифровая трансформация)' },
-  ];
-
   return (
-    <div className="pt-32 pb-20 px-6 max-w-7xl mx-auto">
-      {/* Заголовок */}
-      <h1 className="text-5xl md:text-7xl font-black text-kae-green uppercase tracking-tighter mb-12">
-        {t('nav.about')}
-      </h1>
+    <div className="bg-white text-slate-900">
+      {/* Шапка */}
+      <section className="bg-slate-900 py-20 text-white text-center">
+        <h1 className="text-4xl font-black uppercase tracking-widest">{t('about.page_title')}</h1>
+      </section>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-        {/* Текстовый блок */}
-        <div className="space-y-6 text-gray-300 leading-relaxed text-lg">
-          <p>
-            <span className="text-kae-green font-bold">Kazakhstan Aselsan Engineering</span> — 
-            это современное предприятие, специализирующееся на производстве высокотехнологичной электроники.
-          </p>
-          <p>
-            Наша миссия — обеспечение безопасности через инновации и локализацию передовых технологий в Казахстане.
-          </p>
+      <section className="max-w-6xl mx-auto px-6 py-16">
+        {/* Миссия и Видение */}
+        <div className="grid md:grid-cols-2 gap-8 mb-16">
+          <div className="p-8 bg-slate-50 border-l-4 border-kae-green">
+            <h2 className="text-2xl font-bold mb-4 text-kae-blue">{t('about.mission.title')}</h2>
+            <p className="text-slate-700 leading-relaxed text-sm">{t('about.mission.text')}</p>
+          </div>
+          <div className="p-8 bg-slate-50 border-l-4 border-kae-green">
+            <h2 className="text-2xl font-bold mb-4 text-kae-blue">{t('about.vision.title')}</h2>
+            <p className="text-slate-700 leading-relaxed text-sm">{t('about.vision.text')}</p>
+          </div>
         </div>
 
-        {/* Интерактивный таймлайн */}
-        <div className="border-l border-kae-green/30 pl-8 space-y-12">
-          {history.map((item, index) => (
-            <div key={index} className="relative">
-              {/* Точка на линии */}
-              <div className="absolute -left-9.25 top-1 w-4 h-4 bg-kae-green rounded-full shadow-[0_0_10px_#00E676]"></div>
-              <span className="text-kae-green font-mono text-xl">{item.year}</span>
-              <p className="text-white mt-2 font-medium">{item.text}</p>
-            </div>
-          ))}
+        {/* Цели */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-black uppercase mb-8">{t('about.goals.title')}</h2>
+          <ul className="grid md:grid-cols-2 gap-4">
+            {t('about.goals.items', { returnObjects: true }).map((goal, index) => (
+              <li key={index} className="flex items-start space-x-3 bg-white p-4 border border-slate-100 shadow-sm">
+                <span className="text-kae-green font-bold">0{index + 1}.</span>
+                <span className="text-slate-600 text-sm">{goal}</span>
+              </li>
+            ))}
+          </ul>
         </div>
+
+        {/* Политики */}
+        <div className="grid md:grid-cols-3 gap-6 mb-20">
+          <div className="p-6 border border-slate-200 rounded-lg">
+            <h3 className="font-bold text-kae-blue mb-2 uppercase text-sm">{t('about.policies.quality_title')}</h3>
+            <p className="text-xs text-slate-500">{t('about.policies.quality_text')}</p>
+          </div>
+          <div className="p-6 border border-slate-200 rounded-lg">
+            <h3 className="font-bold text-kae-blue mb-2 uppercase text-sm">{t('about.policies.env_title')}</h3>
+            <p className="text-xs text-slate-500">{t('about.policies.env_text')}</p>
+          </div>
+          <div className="p-6 border border-slate-200 rounded-lg">
+            <h3 className="font-bold text-kae-blue mb-2 uppercase text-sm">{t('about.policies.ohs_title')}</h3>
+            <p className="text-xs text-slate-500">{t('about.policies.ohs_text')}</p>
+          </div>
+        </div>
+
+        {/* История (Хронология) */}
+        <div className="mb-20">
+          <h2 className="text-3xl font-black uppercase mb-10 text-center">{t('about.history.title')}</h2>
+          <div className="space-y-6">
+            {[1, 2, 3, 4, 5].map((i) => (
+              <div key={i} className="flex flex-col md:flex-row border-b border-slate-100 pb-4">
+                <div className="md:w-48 font-bold text-kae-green uppercase text-sm mb-2 md:mb-0">
+                  {t(`about.history.t${i}.date`)}
+                </div>
+                <div className="text-slate-600 text-sm italic">
+                  {t(`about.history.t${i}.text`)}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Состав участников */}
+<div className="bg-slate-900 text-white p-10 rounded-2xl shadow-xl">
+  <h3 className="text-2xl font-bold mb-8 uppercase text-kae-green">
+    {t('about.founders_title')}
+  </h3>
+  <div className="grid sm:grid-cols-3 gap-8">
+    
+    {/* Казахстан Инжиниринг */}
+    <div className="border-l border-white/20 pl-4">
+      <div className="text-3xl font-black mb-1">50%</div>
+      <div className="text-[10px] uppercase text-white/60 leading-tight">
+        {t('about.founders.kazakhstan')}
       </div>
+    </div>
+    
+    {/* Aselsan */}
+    <div className="border-l border-white/20 pl-4">
+      <div className="text-3xl font-black mb-1">49%</div>
+      <div className="text-[10px] uppercase text-white/60 leading-tight">
+        {t('about.founders.aselsan')}
+      </div>
+    </div>
+    
+    {/* Комитет обороны Турции */}
+    <div className="border-l border-white/20 pl-4">
+      <div className="text-3xl font-black mb-1">1%</div>
+      <div className="text-[10px] uppercase text-white/60 leading-tight">
+        {t('about.founders.committee')}
+      </div>
+    </div>
+
+  </div>
+</div>
+      </section>
     </div>
   );
 };
