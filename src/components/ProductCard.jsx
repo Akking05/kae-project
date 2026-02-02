@@ -1,36 +1,35 @@
-const ProductCard = ({ title, category, image }) => {
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+
+const ProductCard = ({ title, category, image, desc }) => { // Добавь desc в пропсы
+  const { t } = useTranslation();
+
   return (
-    <div className="group relative bg-kae-gray/30 border border-white/5 p-4 overflow-hidden transition-all duration-500 hover:border-kae-green/50">
-      {/* Эффект свечения при наведении */}
-      <div className="absolute -inset-1 bg-kae-green/20 blur opacity-0 group-hover:opacity-100 transition-opacity"></div>
-      
-      <div className="relative">
-        {/* Блок с изображением */}
-        <div className="h-56 mb-6 overflow-hidden bg-black/50 flex items-center justify-center">
-          {image ? (
-            <img 
-              src={image} 
-              alt={title} 
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
-            />
-          ) : (
-            <span className="text-kae-green/20 text-4xl font-black italic">NO IMAGE</span>
-          )}
-        </div>
-        
-        <span className="text-[10px] text-kae-green uppercase tracking-[3px] mb-2 block font-bold">
+    <div className="bg-slate-800 border border-white/5 rounded-lg overflow-hidden group hover:border-kae-green/50 transition-all shadow-xl flex flex-col h-full">
+      {/* Контейнер для фото */}
+      <div className="aspect-video bg-slate-700 relative overflow-hidden">
+        <img 
+          src={image} 
+          alt={title} 
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+        />
+        <div className="absolute top-2 left-2 bg-kae-green text-black text-[10px] font-bold px-2 py-1 uppercase">
           {category}
-        </span>
-        
-        <h3 className="text-xl font-bold text-white group-hover:text-kae-green transition-colors">
-          {title}
-        </h3>
-        
-        <div className="mt-6 flex justify-between items-center border-t border-white/5 pt-4">
-          <button className="text-[10px] text-white/50 uppercase tracking-widest hover:text-kae-green transition-all cursor-pointer">
-            Толығырақ →
-          </button>
         </div>
+      </div>
+
+      {/* Текстовый блок */}
+      <div className="p-6 flex flex-col flex-grow">
+        <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
+        
+        {/* ВОТ ТУТ МЫ ДОБАВЛЯЕМ ОПИСАНИЕ */}
+        <p className="text-gray-400 text-sm mb-6 flex-grow leading-relaxed">
+          {desc}
+        </p>
+
+        <button className="text-kae-green text-xs font-bold uppercase tracking-widest hover:text-white transition-colors flex items-center">
+          {t('products.more')} →
+        </button>
       </div>
     </div>
   );
