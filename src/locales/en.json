@@ -1,32 +1,196 @@
 {
   "translation": {
+    "common": {
+      "all": "All",
+      "back": "Back",
+      "viewAll": "View All"
+    },
     "nav": {
       "home": "Home",
       "products": "Products",
-      "about": "About",
+      "gallery": "Media",
+      "about": "About Us",
       "contact": "Contact"
     },
     "hero": {
-      "title": "Future Technologies",
-      "subtitle": "Kazakhstan Aselsan Engineering — today"
-    },
-    "products": {
-      "thermal": "Thermal Imaging Systems",
-      "radio": "Radio Communication",
-      "night": "Night Vision Devices"
+      "title": "KAZAKHSTAN ASELSAN ENGINEERING",
+      "subtitle": "Advanced solutions in defense and security",
+      "button": "View Products"
     },
     "contact": {
-      "title": "Contact Us",
-      "name": "Name",
-      "email": "Email",
+      "title": "Get in Touch",
+      "subtitle": "Have questions? We are always ready to help!",
+      "name": "Your Name",
+      "email": "Email Address",
       "message": "Message",
-      "send": "Send",
+      "send": "Send Message",
       "success": "Message sent successfully!"
+    },
+    "home": {
+      "stats": {
+        "years_market": "Years on market",
+        "specialists": "Specialists",
+        "production_area": "m² production area",
+        "exported_countries": "Export countries"
+      },
+      "production": {
+        "title": "Production in Detail",
+        "subtitle": "Video overview of our facilities and technologies"
+      }
     },
     "gallery3": {
       "title1": "R&D Lab",
       "title2": "Production",
       "title3": "Testing"
+    },
+    "gallery": {
+      "subtitle": "KAE Media Center",
+      "title": "Video Gallery",
+      "v1": "Industrial potential of the plant",
+      "v2": "Communication systems and electronics",
+      "v3": "Defense solutions of Kazakhstan",
+      "v4": "Optical devices testing",
+      "v5": "Participation in international exhibitions",
+      "v6": "Integration of advanced technologies",
+      "v7": "Industrial development of Astana",
+      "v8": "Guarding national security"
+    },
+    "footer": {
+      "about_text": "Kazakhstan Aselsan Engineering is a leading developer and manufacturer of high-tech solutions in defense and security, combining innovation and quality.",
+      "address": "Address",
+      "phone": "Phone",
+      "email": "Email",
+      "rights": "All rights reserved."
+    },
+    "about": {
+      "page_title": "About Company",
+      "mission": {
+        "title": "Our Mission",
+        "text": "Development of solutions, research and development to meet the needs of industry, domestic and foreign customers, as well as the army and security forces of the Republic of Kazakhstan."
+      },
+      "vision": {
+        "title": "Our Vision",
+        "text": "To become a leading technology company, a center for innovation and technological excellence in defense, security, and the civil sector."
+      },
+      "goals": {
+        "title": "Our Goals",
+        "items": [
+          "Development and production of modern high-tech systems, software, and hardware.",
+          "Operation within transparency, responsibility, and ethical values.",
+          "Innovation and competitiveness with environmental protection and efficient resource use.",
+          "Collaboration with global companies to meet the strategic needs of the country."
+        ]
+      },
+      "values": {
+        "title": "Our Values",
+        "list": "Transparency, reliability, excellence, collaboration, and diversity."
+      },
+      "policies": {
+        "quality_title": "Quality Policy",
+        "quality_text": "Satisfying all customer requirements and expectations in the best way, on time, and within budget.",
+        "env_title": "Environmental Protection",
+        "env_text": "Efficient resource use, legal compliance, and training personnel in environmental responsibility.",
+        "ohs_title": "Occupational Health and Safety",
+        "ohs_text": "Eliminating hazards, preventing occupational diseases, and maintaining high personnel awareness."
+      },
+      "history": {
+        "title": "History of Development",
+        "t1": {
+          "date": "May 26, 2010",
+          "text": "KADEX 2010: Presidents of Kazakhstan and Turkey discussed the creation of a joint venture."
+        },
+        "t2": {
+          "date": "February 18, 2011",
+          "text": "Signing of a partnership agreement between JSC NC Kazakhstan Engineering and ASELSAN (Turkey)."
+        },
+        "t3": {
+          "date": "May 13, 2011",
+          "text": "Official establishment of Kazakhstan ASELSAN Engineering LLP."
+        },
+        "t4": {
+          "date": "May 4, 2012",
+          "text": "Beginning of plant construction in the SEZ of Astana city."
+        },
+        "t5": {
+          "date": "December 13, 2013",
+          "text": "Launch of production. Start of development for communication, EW, and electro-optical systems."
+        }
+      },
+      "founders_title": "Participants",
+      "founders": {
+        "kazakhstan": "JSC NC Kazakhstan Engineering",
+        "aselsan": "Aselsan Elektronik Sanayi ve Ticaret A.Ş. (Turkey)",
+        "committee": "Defense Industry Committee of Turkey"
+      }
+    },
+    "products": {
+      "page_title": "Product Catalog",
+      "more": "Learn More",
+      "categories": {
+        "all": "All",
+        "optics": "Optics & Night Vision",
+        "thermal": "Thermal Imaging",
+        "communication": "Communication & IT",
+        "special": "Special Systems"
+      },
+      "items": {
+        "a100": {
+          "name": "A100",
+          "desc": "Night vision monocular. 1x magnification, 350g weight, waterproof up to 1m."
+        },
+        "t350d": {
+          "name": "T350-D",
+          "desc": "Thermal sight/clip-on. 640x480 detector, OLED screen, video recording (32GB)."
+        },
+        "radio4713": {
+          "name": "4713 Series",
+          "desc": "Handheld APCO-25/DMR radio. AES-256 encryption, built-in GPS."
+        },
+        "ihasavar": {
+          "name": "İHASAVAR",
+          "desc": "Anti-Drone system. Suppression of UAV control frequencies and GPS/GLONASS signals."
+        },
+        "a210": {
+          "name": "A210",
+          "desc": "Night vision binocular. 1x magnification, 600g weight, powered by a single AA battery."
+        },
+        "a360": {
+          "name": "A360",
+          "desc": "6x Night vision sight. 1700g weight, focus from 50m to infinity."
+        },
+        "a940": {
+          "name": "A940",
+          "desc": "1x-4x day sight. 620g weight, 5 reticle brightness levels, 70mm eye relief."
+        },
+        "knd525": {
+          "name": "KND 525",
+          "desc": "5-25x56 sniper optical sight. Mil-Dot reticle, parallax adjustment from 25m."
+        },
+        "ars12": {
+          "name": "ARS12",
+          "desc": "Collimator sight. 2 MOA dot size, 8 brightness levels, weight only 50g."
+        },
+        "t360s": {
+          "name": "T360-S",
+          "desc": "Thermal sight. 2.2x magnification, uncooled 640x480 detector, 780g weight."
+        },
+        "radio4721": {
+          "name": "4721 Series",
+          "desc": "Mobile APCO-25/DMR radio station. 1.5kg weight, built-in GPS, three power levels."
+        },
+        "viper": {
+          "name": "VIPER",
+          "desc": "Laser target designator. Range up to 20km, built-in digital camera, weight < 6kg."
+        },
+        "sharpeye": {
+          "name": "SHARPEYE",
+          "desc": "Sensor system. Day and thermal cameras, laser rangefinder up to 20km."
+        },
+        "sarps": {
+          "name": "SARP-S",
+          "desc": "Stabilized weapon station. Armament: 12.7mm NSVT and 7.62mm PKT. Fire on the move."
+        }
+      }
     }
   }
 }

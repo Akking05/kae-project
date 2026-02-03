@@ -6,6 +6,7 @@ import ProductCard from '../components/ProductCard';
 import ImageGallery from '../components/ImageGallery';
 import ContactForm from '../components/ContactForm';
 import Partners from '../components/Partners';
+import VideoSection from '../components/VideoSection';
 
 const Home = () => {
   const { t } = useTranslation();
@@ -124,42 +125,7 @@ const Home = () => {
       </section>
 
       {/* СЕКЦИЯ ВИДЕО */}
-      <section className="py-24 bg-current/2">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="mb-16">
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter italic mb-4">
-              Производство в деталях
-            </h2>
-            <p className="opacity-60 text-xs md:text-sm uppercase tracking-widest">Видеообзор наших мощностей и технологий</p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Основное видео про завод */}
-            <div className="aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl border border-current/10">
-              <iframe
-                className="w-full h-full"
-                src="https://www.youtube.com/embed/SxrXHrwmPuI"
-                title="KAE Factory Video"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
-
-            {/* Второе видео (например, с выставки или о компании) */}
-            <div className="aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl border border-current/10">
-              <iframe
-                className="w-full h-full"
-                src="https://www.youtube.com/embed/J3h93ot0pVM"
-                title="Kazakhstan Engineering Video"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
-          </div>
-        </div>
-      </section>
+      <VideoSection />
 
       {/* 5. ФОРМА (Оставляем легкую подложку для визуального разделения) */}
       <section className="py-20 bg-current/3">

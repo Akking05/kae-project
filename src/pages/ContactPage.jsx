@@ -6,86 +6,73 @@ import ContactForm from '../components/ContactForm';
 const ContactPage = () => {
   const { t } = useTranslation();
 
+  // Обновленные данные: только то, что нужно
   const contactInfo = [
-    { title: 'address', value: 'г. Астана, Индустриальный парк, пр. Кабанбай батыра, 60/1', icon: '📍' },
-    { title: 'email', value: 'info@kae.com.kz', icon: '✉️' },
-    { title: 'phone', value: '+7 (7172) 93-88-00', icon: '📞' }
+    { title: 'email', value: 'info@kae.com.kz', icon: '✉️', link: 'mailto:info@kae.com.kz' },
+    { title: 'phone', value: '+7 (7172) 938 550', icon: '📞', link: 'tel:+77172938550' }
   ];
 
   return (
-    /* Используем плавные переходы без лишних префиксов */
     <div className="min-h-screen bg-transparent pt-24 md:pt-32 pb-20 transition-colors duration-500">
-      <div className="max-w-7xl mx-auto px-4 md:px-6">
+      <div className="max-w-5xl mx-auto px-4 md:px-6">
         
         {/* Заголовок страницы */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-16 md:mb-24"
+          className="mb-12 md:mb-16"
         >
-          <span className="text-kae-green font-black text-xs uppercase tracking-widest mb-4 block italic opacity-80">
-            {t('contact.subtitle') || 'Connect with us'}
+          <span className="text-kae-green font-black text-xs uppercase tracking-[0.3em] mb-4 block italic opacity-80">
+            {t('contact.subtitle')}
           </span>
-          <h1 className="text-4xl md:text-7xl font-black uppercase tracking-tighter italic leading-none">
+          <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter italic leading-none">
             {t('nav.contact')}
           </h1>
         </motion.div>
 
-        {/* Сетка инфо-карточек */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 mb-20">
+        {/* Сетка инфо-карточек: теперь 2 колонки, так как адреса нет */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-16">
           {contactInfo.map((info, idx) => (
-            <motion.div
+            <motion.a
               key={info.title}
+              href={info.link}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.1 }}
-              /* v4 синтаксис: /5 вместо /[0.05] */
-              className="p-8 bg-current/5 dark:bg-white/5 border border-current/10 rounded-2xl hover:border-kae-green/50 transition-all group"
+              className="p-8 bg-current/5 dark:bg-white/5 border border-current/10 rounded-3xl hover:border-kae-green transition-all group"
             >
-              <div className="text-2xl mb-4">{info.icon}</div>
-              <h4 className="text-kae-green font-black text-xs uppercase tracking-widest mb-3 italic">
-                {t(`footer.${info.title}`) || info.title}
+              <div className="text-3xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
+                {info.icon}
+              </div>
+              <h4 className="text-kae-green font-black text-[10px] uppercase tracking-widest mb-2 italic">
+                {t(`footer.${info.title}`)}
               </h4>
-              <p className="text-xs md:text-sm font-bold uppercase tracking-tight opacity-70 leading-relaxed">
+              <p className="text-lg md:text-xl font-black uppercase tracking-tight opacity-90 group-hover:text-kae-green transition-colors">
                 {info.value}
               </p>
-            </motion.div>
+            </motion.a>
           ))}
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-start">
-          {/* Лево: Форма */}
+        {/* Секция с формой — теперь центрирована и на всю ширину контейнера */}
+        <div className="max-w-4xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            /* v4 синтаксис: /2 вместо /[0.02] */
-            className="bg-current/2 dark:bg-white/2 p-4 md:p-8 rounded-3xl border border-current/5"
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3 }}
+            className="bg-current/3 dark:bg-white/3 p-6 md:p-12 rounded-[2.5rem] border border-current/5 relative overflow-hidden"
           >
-            <ContactForm />
-          </motion.div>
-
-          {/* Право: Карта */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="relative h-96 md:h-full min-h-100 rounded-3xl overflow-hidden border border-current/10"
-          >
-            <div className="absolute inset-0 bg-slate-200 dark:bg-slate-800 flex items-center justify-center">
-              <div className="text-center p-6">
-                <div className="text-4xl mb-4">🗺️</div>
-                <p className="text-xs uppercase font-black tracking-widest opacity-40">
-                  Интерактивная карта скоро появится
-                </p>
-                <button className="mt-4 text-[10px] text-kae-green border border-kae-green/30 px-6 py-2 hover:bg-kae-green hover:text-black transition-all font-bold uppercase cursor-pointer">
-                   Открыть в 2ГИС
-                </button>
-              </div>
-            </div>
+            {/* Декоративный эффект для объема */}
+            <div className="absolute -top-24 -right-24 w-64 h-64 bg-kae-green/5 blur-[100px] rounded-full" />
             
-            {/* Внутренняя тень для объема */}
-            <div className="absolute inset-0 pointer-events-none shadow-inner opacity-20 dark:opacity-50"></div>
+            <div className="relative z-10">
+              <h3 className="text-2xl font-black uppercase italic mb-10 tracking-tight">
+              </h3>
+              <ContactForm />
+            </div>
           </motion.div>
         </div>
+
       </div>
     </div>
   );
