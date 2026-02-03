@@ -1,64 +1,134 @@
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import logoPng from '../assets/logo.png';
+import ThemeToggle from './ThemeToggle';
 
 const Header = () => {
-   const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
-   const changeLanguage = (lng) => {
-      i18n.changeLanguage(lng);
-   };
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location]);
 
-   return (
-      <header className="fixed top-0 w-full z-50 bg-kae-dark/50 backdrop-blur-lg border-b border-white/10">
-         <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-            {/* Логотип */}
-            <Link to="/" className="flex items-center space-x-3 group">
-          {/* 2. Заменяем старый div на этот блок */}
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
+  const navLinks = [
+    { name: 'home', path: '/' },
+    { name: 'products', path: '/products' },
+    { name: 'gallery', path: '/gallery' },
+    { name: 'about', path: '/about' },
+    { name: 'contact', path: '/contact' }
+  ];
+
+  return (
+    <header className="fixed top-0 w-full z-100 bg-site-bg/80 backdrop-blur-md border-b border-current/10 transition-colors duration-500">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex justify-between items-center">
+        
+        {/* ЛОГОТИП */}
+        <Link to="/" className="flex items-center shrink-0">
           <img 
             src={logoPng} 
             alt="KAE Logo" 
-            className="h-10 md:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105" 
+            className="h-8 md:h-12 w-auto object-contain dark:brightness-110" 
           />
-          
-          {/* <div className="flex flex-col border-l border-white/20 pl-3">
-            <span className="text-xl font-black leading-none tracking-tighter text-kae-green">KAE</span>
-            <span className="text-[8px] uppercase text-white/50 leading-none mt-1">
-              Kazakhstan Aselsan Engineering
-            </span>
-          </div> */}
         </Link>
 
-            {/* Навигация */}
-            <nav className="flex space-x-8">
-               <Link to="/" className="hover:text-kae-green transition-colors">
-                  {t('nav.home')}
-               </Link>
-               <Link to="/products" className="hover:text-kae-green transition-colors">
-                  {t('nav.products')}
-               </Link>
-               <Link to="/about" className="hover:text-kae-green transition-colors">
-                  {t('nav.about')}
-               </Link>
-               <Link to="/contact" className="hover:text-kae-green transition-colors">
-                  {t('nav.contact')}
-               </Link>
-            </nav>
-            {/* Переключатель языков */}
-            <div className="flex space-x-4 text-[10px] font-bold">
-               {['kz', 'ru', 'en'].map((lng) => (
-                  <button
-                     key={lng}
-                     onClick={() => changeLanguage(lng)}
-                     className={`uppercase cursor-pointer hover:text-kae-green transition-colors ${i18n.language === lng ? 'text-kae-green' : 'text-gray-500'}`}
-                  >
-                     {lng}
-                  </button>
-               ))}
+        {/* ДЕСКТОП НАВИГАЦИЯ */}
+        <nav className="hidden lg:flex items-center space-x-8">
+          {navLinks.map((link) => (
+            <Link 
+              key={link.name}
+              to={link.path} 
+              className={`text-[10px] font-black uppercase tracking-[0.2em] transition-all hover:text-kae-green ${
+                location.pathname === link.path ? 'text-kae-green' : 'opacity-50 hover:opacity-100'
+              }`}
+            >
+              {t(`nav.${link.name}`)}
+            </Link>
+          ))}
+        </nav>
+
+        {/* ПРАВАЯ ЧАСТЬ */}
+        <div className="flex items-center space-x-2 md:space-x-6">
+          <div className="hidden sm:flex space-x-3 border-r border-current/10 pr-4">
+            {['kz', 'ru', 'en'].map((lng) => (
+              <button
+                key={lng}
+                onClick={() => changeLanguage(lng)}
+                className={`uppercase text-[10px] font-black cursor-pointer transition-colors ${
+                  i18n.language === lng ? 'text-kae-green' : 'opacity-30 hover:opacity-100'
+                }`}
+              >
+                {lng}
+              </button>
+            ))}
+          </div>
+
+          <ThemeToggle />
+
+          {/* КНОПКА БУРГЕРА */}
+          <button 
+            onClick={() => setIsOpen(!isOpen)}
+            className="lg:hidden p-2 outline-none"
+          >
+            <div className="w-6 h-5 flex flex-col justify-between">
+              <span className={`h-0.5 w-full bg-current transform transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-2' : 'opacity-80'}`} />
+              <span className={`h-0.5 w-full bg-current transition-all duration-300 ${isOpen ? 'opacity-0' : 'opacity-80'}`} />
+              <span className={`h-0.5 w-full bg-current transform transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-2' : 'opacity-80'}`} />
             </div>
-         </div>
-      </header>
-   );
+          </button>
+        </div>
+      </div>
+
+      {/* МОБИЛЬНОЕ МЕНЮ */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="lg:hidden bg-(--site-bg) border-b border-current/10 overflow-hidden"
+          >
+            <div className="px-6 py-8 flex flex-col space-y-6">
+              {navLinks.map((link) => (
+                <Link 
+                  key={link.name}
+                  to={link.path}
+                  className={`text-2xl font-black uppercase tracking-tighter transition-all ${
+                    location.pathname === link.path ? 'text-kae-green' : 'opacity-90'
+                  }`}
+                >
+                  {t(`nav.${link.name}`)}
+                </Link>
+              ))}
+              
+              <div className="pt-6 border-t border-current/10 flex justify-between items-center">
+                <div className="flex space-x-6">
+                  {['kz', 'ru', 'en'].map((lng) => (
+                    <button
+                      key={lng}
+                      onClick={() => changeLanguage(lng)}
+                      className={`uppercase text-xs font-black transition-colors ${
+                        i18n.language === lng ? 'text-kae-green' : 'opacity-40'
+                      }`}
+                    >
+                      {lng}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
+  );
 };
 
 export default Header;

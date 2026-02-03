@@ -1,90 +1,173 @@
 import { useTranslation } from 'react-i18next';
-import ImageGallery from '../components/ImageGallery';
-import ProductCard from '../components/ProductCard';
-import ContactForm from '../components/ContactForm';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { productsData } from '../data/products';
+import ProductCard from '../components/ProductCard';
+import ImageGallery from '../components/ImageGallery';
+import ContactForm from '../components/ContactForm';
+import Partners from '../components/Partners';
 
 const Home = () => {
   const { t } = useTranslation();
 
-  // Выбрано 5 ключевых продуктов из каталога для демонстрации
-  const products = [
-    {
-      id: 1,
-      title: 'A100', // Монокуляр ночного видения [cite: 21, 26]
-      category: t('products.categories.night_vision'),
-      image: '/images/products/a100.jpg' 
-    },
-    {
-      id: 2,
-      title: 'T350-D', // Тепловизионный прицел [cite: 134, 142]
-      category: t('products.categories.thermal'),
-      image: '/images/products/t350d.jpg'
-    },
-    {
-      id: 3,
-      title: '3700 Series', // Носимая радиостанция [cite: 688, 721]
-      category: t('products.categories.radio'),
-      image: '/images/products/radio4713.png'
-    },
-    {
-      id: 4,
-      title: 'İHASAVAR', // Система Анти-Дрон [cite: 1010, 1012]
-      category: t('products.categories.anti_drone'),
-      image: '/images/products/antidrone.jpg'
-    },
-    {
-      id: 5,
-      title: 'SARP-S', // Боевой модуль [cite: 1618, 1657]
-      category: t('products.categories.weapon_systems'),
-      image: '/images/products/sarps.jpg'
-    },
+  const stats = [
+    { label: 'years_market', value: '10+' },
+    { label: 'specialists', value: '250+' },
+    { label: 'production_area', value: '15k' },
+    { label: 'exported_countries', value: '5+' }
   ];
 
   return (
-    <>
-      {/* Hero Section */}
-      <section className="h-[70vh] flex flex-col items-center justify-center text-center px-4 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,var(--color-kae-gray)_0%,transparent_70%)] opacity-30 -z-10"></div>
-        <h1 className="text-4xl md:text-6xl font-black text-kae-green uppercase tracking-tighter mb-4">
-          {t('hero.title')}
-        </h1>
-        <p className="text-gray-400 text-lg md:text-2xl max-w-2xl font-light tracking-wide uppercase">
-          {t('hero.subtitle')} {/* "КРЕПКАЯ ОБОРОНА — СВЕТЛОЕ БУДУЩЕЕ"  */}
-        </p>
+    /* bg-transparent позволяет видеть цвет фона из index.css */
+    <div className="transition-colors duration-500 overflow-x-hidden bg-transparent">
 
-        <Link
-          to="/products"
-          className="mt-8 px-8 py-3 border border-kae-green text-kae-green hover:bg-kae-green hover:text-white transition-all duration-300 uppercase font-bold tracking-widest text-sm"
+      {/* 1. HERO СЕКЦИЯ */}
+      <section className="relative h-[90vh] flex flex-col items-center justify-center text-center px-4 overflow-hidden">
+        {/* Сетка */}
+        <div className="absolute inset-0 z-0 opacity-[0.03] dark:opacity-[0.07] pointer-events-none"
+          style={{ backgroundImage: `linear-gradient(#00E676 1px, transparent 1px), linear-gradient(90deg, #00E676 1px, transparent 1px)`, backgroundSize: '40px 40px' }}>
+        </div>
+
+        {/* Световые пятна */}
+        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-kae-green/10 blur-[120px] rounded-full" />
+        <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-kae-green/5 blur-[120px] rounded-full" />
+
+        <div className="relative z-10 max-w-5xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <span className="inline-block py-1 px-3 border border-kae-green/30 text-kae-green text-[10px] font-black uppercase tracking-[0.4em] mb-6 rounded-full bg-kae-green/5">
+              Kazakhstan Aselsan Engineering
+            </span>
+
+            {/* УБРАЛИ жесткий цвет: теперь тянет из body (index.css) */}
+            <h1 className="text-3xl xs:text-4xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-[0.9] mb-8 italic">
+              {t('hero.title')}
+            </h1>
+
+            {/* Цвет текста через opacity, чтобы он был чуть мягче основного */}
+            <p className="opacity-70 text-sm md:text-xl max-w-2xl mx-auto font-light tracking-wide uppercase leading-relaxed mb-10">
+              {t('hero.subtitle')}
+            </p>
+          </motion.div>
+        </div>
+
+        {/* Скролл */}
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{ repeat: Infinity, duration: 2 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center"
         >
-          {t('hero.button')}
-        </Link>
-
-        <div className="mt-10 h-12 w-px bg-kae-green animate-bounce"></div>
+          <span className="text-[8px] uppercase tracking-[0.3em] opacity-40 mb-2">Scroll</span>
+          <div className="w-px h-12 bg-linear-to-b from-kae-green to-transparent"></div>
+        </motion.div>
       </section>
 
-    {/* Галерея */}
-      <ImageGallery />
+      {/* 2. ГАЛЕРЕЯ */}
+      <div className="py-10">
+        <ImageGallery />
+      </div>
 
-      {/* Сетка продуктов */}
-      <section className="max-w-7xl mx-auto px-6 py-20">
-        <div className="flex items-center space-x-4 mb-12">
-          <h2 className="text-3xl font-bold uppercase tracking-tighter italic">{t('nav.products')}</h2>
-          <div className="h-px flex-1 bg-white/10"></div>
-          <Link to="/products" className="text-kae-green text-sm hover:underline">
+      {/* 3. СТАТИСТИКА */}
+      <section className="py-20 border-y border-current/10">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 text-center">
+            {stats.map((stat, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+              >
+                <div className="text-4xl md:text-6xl font-black text-kae-green mb-2 italic">
+                  {stat.value}
+                </div>
+                <div className="text-[10px] md:text-xs uppercase font-bold tracking-widest opacity-50 max-w-37.5 mx-auto leading-tight">
+                  {t(`home.stats.${stat.label}`)}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. КАТАЛОГ */}
+      <section className="max-w-7xl mx-auto px-4 md:px-6 py-24">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+          <div>
+            {/* УБРАЛИ жесткий цвет заголовка */}
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter italic">
+              {t('nav.products')}
+            </h2>
+          </div>
+          <Link to="/products" className="group flex items-center text-xs font-bold uppercase tracking-widest opacity-50 hover:opacity-100 hover:text-kae-green transition-all">
             {t('common.viewAll')}
+            <span className="ml-3 w-10 h-px bg-current opacity-20 group-hover:w-16 group-hover:bg-kae-green group-hover:opacity-100 transition-all"></span>
           </Link>
         </div>
 
-        {/* Сетка на 5 элементов будет выглядеть лучше с центрированием последнего ряда */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
-          {products.map(p => <ProductCard key={p.id} {...p} />)}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {productsData.slice(0, 3).map(item => (
+            <ProductCard
+              key={item.id}
+              id={item.id}
+              image={item.image}
+              category={item.category}
+              title={t(`products.items.${item.id}.name`)}
+              desc={t(`products.items.${item.id}.desc`)}
+            />
+          ))}
         </div>
       </section>
 
-    {/* Форма контактов */}
-      <ContactForm />
-    </>
+      {/* СЕКЦИЯ ВИДЕО */}
+      <section className="py-24 bg-current/2">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="mb-16">
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter italic mb-4">
+              Производство в деталях
+            </h2>
+            <p className="opacity-60 text-xs md:text-sm uppercase tracking-widest">Видеообзор наших мощностей и технологий</p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Основное видео про завод */}
+            <div className="aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl border border-current/10">
+              <iframe
+                className="w-full h-full"
+                src="https://www.youtube.com/embed/SxrXHrwmPuI"
+                title="KAE Factory Video"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+
+            {/* Второе видео (например, с выставки или о компании) */}
+            <div className="aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl border border-current/10">
+              <iframe
+                className="w-full h-full"
+                src="https://www.youtube.com/embed/J3h93ot0pVM"
+                title="Kazakhstan Engineering Video"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. ФОРМА (Оставляем легкую подложку для визуального разделения) */}
+      <section className="py-20 bg-current/3">
+        <ContactForm />
+      </section>
+      
+      <Partners />
+    </div>
   );
 };
 

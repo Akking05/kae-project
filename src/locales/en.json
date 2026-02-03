@@ -22,6 +22,11 @@
       "message": "Message",
       "send": "Send",
       "success": "Message sent successfully!"
+    },
+    "gallery3": {
+      "title1": "R&D Lab",
+      "title2": "Production",
+      "title3": "Testing"
     }
   }
 }

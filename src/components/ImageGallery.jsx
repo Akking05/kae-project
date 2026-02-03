@@ -1,8 +1,13 @@
+import { useTranslation } from 'react-i18next';
+
 const ImageGallery = () => {
+
+  const { t } = useTranslation();
+  
   const images = [
-    { id: 1, url: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800', title: 'R&D Lab' },
-    { id: 2, url: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800', title: 'Production' },
-    { id: 3, url: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=800', title: 'Testing' }
+    { id: 1, url: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800', title: t('gallery3.title1') },
+    { id: 2, url: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800', title: t('gallery3.title2') },
+    { id: 3, url: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=800', title: t('gallery3.title3') }
   ];
 
   return (
