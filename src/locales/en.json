@@ -1,5 +1,27 @@
 {
   "translation": {
+    "seo": {
+    "home": {
+      "title": "KAE — Kazakhstan Aselsan Engineering | Official Website",
+      "description": "Kazakhstan's leading plant for the production of defense electronics, night vision devices, and optical systems."
+    },
+    "about": {
+      "title": "About Us | KAE — History and Mission",
+      "description": "Learn more about the establishment of Kazakhstan Aselsan Engineering, our values, and technological capabilities."
+    },
+    "products": {
+      "title": "Product Catalog | High-Tech Solutions KAE",
+      "description": "Electro-optical devices, communication systems, and weapon stabilization solutions made in Kazakhstan."
+    },
+    "gallery": {
+      "title": "Media Gallery | Production and Events KAE",
+      "description": "Photos of production facilities, equipment, and key company events."
+    },
+    "contact": {
+      "title": "Contacts | Get in Touch — KAE",
+      "description": "Contact phone numbers, and feedback form for partners."
+    }
+  },
     "common": {
       "all": "All",
       "back": "Back",

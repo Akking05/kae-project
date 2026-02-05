@@ -13,6 +13,10 @@ const ContactPage = () => {
   ];
 
   return (
+    <>  
+    <title>{t('seo.contact.title')}</title>
+<meta name="description" content={t('seo.contact.description')} />
+
     <div className="min-h-screen bg-transparent pt-24 md:pt-32 pb-20 transition-colors duration-500">
       <div className="max-w-5xl mx-auto px-4 md:px-6">
         
@@ -75,6 +79,7 @@ const ContactPage = () => {
 
       </div>
     </div>
+    </>
   );
 };
 
