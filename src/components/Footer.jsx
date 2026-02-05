@@ -9,15 +9,15 @@ const Footer = () => {
   return (
     <footer className="bg-transparent border-t border-slate-200 dark:border-white/5 pt-16 pb-8 transition-colors duration-500">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
-        
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16 items-start">
-          
+
           {/* 1. О компании */}
           <div className="flex flex-col space-y-6">
-            <img 
-              src={logoPng} 
-              alt="KAE Logo" 
-              className="h-9 w-auto object-contain self-start grayscale opacity-80 hover:grayscale-0 transition-all" 
+            <img
+              src={logoPng}
+              alt="KAE Logo"
+              className="h-9 w-auto object-contain self-start grayscale opacity-80 hover:grayscale-0 transition-all"
             />
             <p className="opacity-50 text-[11px] leading-relaxed uppercase tracking-widest max-w-xs font-medium">
               {t('footer.about_text')}
@@ -30,8 +30,8 @@ const Footer = () => {
             <ul className="space-y-3">
               {['home', 'products', 'gallery', 'about', 'contact'].map((item) => (
                 <li key={item}>
-                  <Link 
-                    to={item === 'home' ? '/' : `/${item}`} 
+                  <Link
+                    to={item === 'home' ? '/' : `/${item}`}
                     className="opacity-40 hover:opacity-100 hover:text-kae-green text-[10px] uppercase font-black transition-all tracking-widest"
                   >
                     {t(`nav.${item}`)}
@@ -61,18 +61,18 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-current/5 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 text-[9px] font-black uppercase tracking-[0.3em] opacity-30">
-          <p>© «KAE» {new Date().getFullYear()}</p>
-          
-          <div className="flex items-center space-x-1">
-            <span className="font-medium opacity-70">Разработано в</span>
-            <a 
-              href="https://panama.kz" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="hover:text-kae-green transition-colors"
-            >
-              Panama Digital Company
-            </a>
+
+          {/* Копирайт завода */}
+          <p>© «KAE» {new Date().getFullYear()}. {t('footer.rights')}</p>
+
+          {/* Ссылки без лишних имен */}
+          <div className="flex items-center space-x-8">
+            <Link to="/contact" className="hover:text-kae-green transition-colors">
+              Privacy Policy
+            </Link>
+            <Link to="/about" className="hover:text-kae-green transition-colors">
+              Terms of Use
+            </Link>
           </div>
         </div>
       </div>
